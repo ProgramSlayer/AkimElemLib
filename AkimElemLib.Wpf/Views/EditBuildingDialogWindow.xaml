@@ -1,0 +1,104 @@
+﻿<Window x:Class="AkimElemLib.Wpf.Views.EditBuildingDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:buildings="clr-namespace:AkimElemLib.Wpf.ViewModels.SpecificObjects.Buildings"
+        d:DataContext="{d:DesignInstance Type=buildings:EditBuildingViewModel}"
+        mc:Ignorable="d"
+        Title="Параметры строения" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Margin="10"
+                      Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Наименование"
+                           Margin="10"
+                           Grid.Row="0" Grid.Column="0"/>
+                <TextBox Name="TxtBoxName"
+                         Text="{Binding Name}"
+                         Margin="10"
+                         Grid.Row="0" Grid.Column="1"/>
+
+                <TextBlock Text="Единицы измерения скорости передвижения"
+                           Margin="10"
+                           Grid.Row="1" Grid.Column="0"/>
+                <ComboBox Name="CmbBoxVelocityMeasureUnits"
+                          ItemsSource="{Binding VelocityMeasureUnits}"
+                          SelectedItem="{Binding VelocityMeasureUnit}"
+                          Margin="10"
+                          Grid.Row="1" Grid.Column="1"/>
+
+                <TextBlock Text="Максимальная скорость передвижения"
+                           Margin="10"
+                           Grid.Row="2" Grid.Column="0"/>
+                <TextBox Name="TxtBoxMaxVelocity"
+                         Text="{Binding MaxVelocity}"
+                         Margin="10"
+                         Grid.Row="2" Grid.Column="1"/>
+
+                <TextBlock Text="Коэффициент прозрачности"
+                           Margin="10"
+                           Grid.Row="3" Grid.Column="0"/>
+                <TextBox Name="TxtBoxTransparency"
+                         Text="{Binding Transparency}"
+                         Margin="10"
+                         Grid.Row="3" Grid.Column="1"/>
+
+                <TextBlock Text="Высота строения, м"
+                           Margin="10"
+                           Grid.Row="4" Grid.Column="0"/>
+                <TextBox Name="TxtBoxHeight"
+                         Text="{Binding Height}"
+                         Margin="10"
+                         Grid.Row="4" Grid.Column="1"/>
+
+                <TextBlock Text="Высота расположения относительно земли, м"
+                           Margin="10"
+                           Grid.Row="5" Grid.Column="0"/>
+                <TextBox Name="TxtBoxHeightRelativeToGround"
+                         Text="{Binding HeightRelativeToGround}"
+                         Margin="10"
+                         Grid.Row="5" Grid.Column="1"/>
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="10" HorizontalAlignment="Center" 
+                    Grid.Row="2" Grid.Column="1">
+            <Button Name="BtnSubmit"
+                    Content="OK"
+                    Click="BtnSubmit_Click"/>
+            <Button Name="BtnCancel"
+                    Margin="20 0 0 0"
+                    Content="Отмена"
+                    Click="BtnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

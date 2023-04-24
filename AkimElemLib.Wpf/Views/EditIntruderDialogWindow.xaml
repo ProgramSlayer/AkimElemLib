@@ -1,0 +1,577 @@
+﻿<Window x:Class="AkimElemLib.Wpf.Views.EditIntruderDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:intruders="clr-namespace:AkimElemLib.Wpf.ViewModels.Intruders"
+        d:DataContext="{d:DesignInstance Type=intruders:EditIntruderViewModel}"
+        mc:Ignorable="d"
+        Title="Параметры нарушителя" Height="450" Width="800"
+        d:DesignHeight="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        
+        <TabControl Margin="10"
+                    Grid.Row="1" Grid.Column="1">
+            <TabItem Header="Общие">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical"
+                                Margin="10">
+                        <GroupBox Header="Скорость передвижения"
+                                  Name="GrpBoxVelocity"
+                                  DataContext="{Binding VelocityParams}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Единицы измерения"
+                                           Margin="10"
+                                           Grid.Row="0" Grid.Column="0"/>
+                                <ComboBox Name="CmbBoxVelocityMeasureUnit"
+                                          ItemsSource="{Binding VelocityMeasureUnits}"
+                                          SelectedItem="{Binding VelocityMeasureUnit}"
+                                          Margin="10" Grid.Row="0" Grid.Column="1"/>
+
+                                <TextBlock Text="Минимальная скорость передвижения"
+                                           Grid.Row="1" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxMinVelocity"
+                                         Text="{Binding MinVelocity}"
+                                         Grid.Row="1" Grid.Column="1"
+                                         Margin="10"/>
+
+                                <TextBlock Text="Максимальная скорость передвижения"
+                                           Grid.Row="2" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxMaxVelocity"
+                                         Text="{Binding MaxVelocity}"
+                                         Grid.Row="2" Grid.Column="1"
+                                         Margin="10"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Сообщники"
+                                  Name="GrpBoxAccomplices"
+                                  Margin="0 20 0 0"
+                                  DataContext="{Binding AccomplicesParams}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Наличие сообщников"
+                                           Grid.Row="0" Grid.Column="0"
+                                           Margin="10"/>
+                                <CheckBox Name="ChkBoxHasAccomplices"
+                                          IsChecked="{Binding HasAccomplices}"
+                                          Grid.Row="0" Grid.Column="1"
+                                          Margin="10"/>
+
+                                <TextBlock Text="Вероятность снижения задержки на элементах ИСО в 2 раза"
+                                           Grid.Row="1" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxIso2xDelayDropProbability"
+                                         Text="{Binding Iso2xDelayDropProbability}"
+                                         Grid.Row="1" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding HasAccomplices, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Text="Вероятность снижения обнаруживающей способности извещателей в 2 раза"
+                                           Grid.Row="2" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxSensors2xDetectionDecreaseProbability"
+                                         Text="{Binding Sensors2xDetectionDecreaseProbability}"
+                                         Grid.Row="2" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding HasAccomplices, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Text="Среднее время до выдачи умышленной ложной тревоги (ч)"
+                                           Grid.Row="3" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxTimeTillIntentionalFalseAlarm"
+                                         Text="{Binding TimeTillIntentionalFalseAlarm}"
+                                         Grid.Row="3" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding HasAccomplices, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Автомобиль"
+                                  Name="GrpBoxCar"
+                                  Margin="0 20 0 0"
+                                  DataContext="{Binding CarParams}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Наличие автомобиля"
+                                           Grid.Row="0" Grid.Column="0"
+                                           Margin="10"/>
+                                <CheckBox Name="ChkBoxHasCar"
+                                          IsChecked="{Binding HasCar}"
+                                          Grid.Row="0" Grid.Column="1"
+                                          Margin="10"/>
+
+                                <TextBlock Text="Увеличение скорости в ... раз"
+                                           Grid.Row="1" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxVelocityIncreaseCoefficient"
+                                         Text="{Binding VelocityIncreaseCoefficient}"
+                                         Grid.Row="1" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding HasCar, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Text="Вероятность бросить транспортное средство"
+                                           Grid.Row="2" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxCarDropProbability"
+                                         Text="{Binding CarDropProbability}"
+                                         Grid.Row="2" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding HasCar, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+            <TabItem Header="Психофизические"
+                     DataContext="{Binding PsychophysicalParams}">
+                <ScrollViewer>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Вероятность незаметного проникновения, осторожность"
+                                   Grid.Row="0" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxUnnoticedIntrusionProbability"
+                                 Text="{Binding UnnoticedIntrusionProbability}"
+                                 Grid.Row="0" Grid.Column="1"
+                                 Margin="10"/>
+
+                        <TextBlock Text="Вероятность снижения осторожности до 0"
+                                   Grid.Row="1" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxCautionDropTo0Probability"
+                                 Text="{Binding CautionDropTo0Probability}"
+                                 Grid.Row="1" Grid.Column="1"
+                                 Margin="10"/>
+
+                        <TextBlock Text="Вероятность отказа от проникновения"
+                                   Grid.Row="2" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxIntrusionRefusalProbability"
+                                 Text="{Binding IntrusionRefusalProbability}"
+                                 Grid.Row="2" Grid.Column="1"
+                                 Margin="10"/>
+
+                        <TextBlock Text="Вероятность изменения скорости движения"
+                                   Grid.Row="3" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxVelocityChangeProbability"
+                                 Text="{Binding VelocityChangeProbability}"
+                                 Grid.Row="3" Grid.Column="1"
+                                 Margin="10"/>
+
+                        <TextBlock Text="Вероятность повышения скорости движения в случае решения изменить скорость"
+                                   Grid.Row="4" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxVelocityIncreaseProbability"
+                                 Text="{Binding VelocityIncreaseProbability}"
+                                 Grid.Row="4" Grid.Column="1"
+                                 Margin="10"/>
+
+                        <TextBlock Text="Вероятность смены направления движения, если замечены сотрудники службы безопасности"
+                                   Grid.Row="5" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxMovementDirectionChangeProbability"
+                                 Text="{Binding MovementDirectionChangeProbability}"
+                                 Grid.Row="5" Grid.Column="1"
+                                 Margin="10"/>
+
+                        <TextBlock Text="Минимальная дальность отбегания при смене направления движения"
+                                   Grid.Row="6" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxMinRunawayDistance"
+                                 Text="{Binding MinRunawayDistance}"
+                                 Grid.Row="6" Grid.Column="1"
+                                 Margin="10"/>
+
+                        <TextBlock Text="Максимальная дальность отбегания при смене направления движения"
+                                   Grid.Row="7" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxMaxRunawayDistance"
+                                 Text="{Binding MaxRunawayDistance}"
+                                 Grid.Row="7" Grid.Column="1"
+                                 Margin="10"/>
+
+                        <TextBlock Text="Знание территории объекта, %"
+                                   Grid.Row="8" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxObjectTerritoryKnowledgePercent"
+                                 Text="{Binding ObjectTerritoryKnowledgePercent}"
+                                 Grid.Row="8" Grid.Column="1"
+                                 Margin="10"/>
+
+                        <TextBlock Text="Вероятность проникновения по воздушным конструкциям"
+                                   Grid.Row="9" Grid.Column="0"
+                                   Margin="10"/>
+                        <TextBox Name="TxtBoxAerialConstructionIntrusionProbability"
+                                 Text="{Binding AerialConstructionIntrusionProbability}"
+                                 Grid.Row="9" Grid.Column="1"
+                                 Margin="10"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            
+            <TabItem Header="Оснащение">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical"
+                                Margin="10">
+                        <GroupBox Header="Лёгкое техническое оснащение"
+                                  Name="GrpBoxLightEquipment"
+                                  DataContext="{Binding LightEquipment}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Используется"
+                                           Grid.Row="0" Grid.Column="0"
+                                           Margin="10"/>
+                                <CheckBox Name="ChkBoxLightEquipmentIsUsed"
+                                          IsChecked="{Binding IsUsed}"
+                                          Grid.Row="0" Grid.Column="1"
+                                          Margin="10"/>
+
+                                <TextBlock Text="Снижение времени преодоления препятствий в ... раз"
+                                           Grid.Row="1" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxLightEquipmentObstacleOvercomeTimeDecreaseCoefficient"
+                                         Text="{Binding ObstacleOvercomeTimeDecreaseCoefficient}"
+                                         Grid.Row="1" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding IsUsed, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Text="Снижение скорости движения в ... раз"
+                                           Grid.Row="2" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxLightEquipmentVelocityDecreaseCoefficient"
+                                         Text="{Binding VelocityDecreaseCoefficient}"
+                                         Grid.Row="2" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding IsUsed, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Среднее техническое оснащение"
+                                  Name="GrpBoxMediumEquipment"
+                                  Margin="0 20 0 0"
+                                  DataContext="{Binding MediumEquipment}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Используется"
+                                           Grid.Row="0" Grid.Column="0"
+                                           Margin="10"/>
+                                <CheckBox Name="ChkBoxMediumEquipmentIsUsed"
+                                          IsChecked="{Binding IsUsed}"
+                                          Grid.Row="0" Grid.Column="1"
+                                          Margin="10"/>
+
+                                <TextBlock Text="Снижение времени преодоления препятствий в ... раз"
+                                           Grid.Row="1" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxMediumEquipmentObstacleOvercomeTimeDecreaseCoefficient"
+                                         Text="{Binding ObstacleOvercomeTimeDecreaseCoefficient}"
+                                         Grid.Row="1" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding IsUsed, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Text="Снижение скорости движения в ... раз"
+                                           Grid.Row="2" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxMediumEquipmentVelocityDecreaseCoefficient"
+                                         Text="{Binding VelocityDecreaseCoefficient}"
+                                         Grid.Row="2" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding IsUsed, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Тяжёлое техническое оснащение"
+                                  Name="GrpBoxHeavyEquipment"
+                                  Margin="0 20 0 0"
+                                  DataContext="{Binding HeavyEquipment}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Используется"
+                                           Grid.Row="0" Grid.Column="0"
+                                           Margin="10"/>
+                                <CheckBox Name="ChkBoxHeavyEquipmentIsUsed"
+                                          IsChecked="{Binding IsUsed}"
+                                          Grid.Row="0" Grid.Column="1"
+                                          Margin="10"/>
+
+                                <TextBlock Text="Снижение времени преодоления препятствий в ... раз"
+                                           Grid.Row="1" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxHeavyEquipmentObstacleOvercomeTimeDecreaseCoefficient"
+                                         Text="{Binding ObstacleOvercomeTimeDecreaseCoefficient}"
+                                         Grid.Row="1" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding IsUsed, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Text="Снижение скорости движения в ... раз"
+                                           Grid.Row="2" Grid.Column="0"
+                                           Margin="10"/>
+                                <TextBox Name="TxtBoxHeavyEquipmentVelocityDecreaseCoefficient"
+                                         Text="{Binding VelocityDecreaseCoefficient}"
+                                         Grid.Row="2" Grid.Column="1"
+                                         Margin="10"
+                                         IsEnabled="{Binding IsUsed, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <Grid Margin="0 20 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Вероятность бросить часть технического оснащения"
+                                       Margin="10" Grid.Row="0" Grid.Column="0"/>
+                            <TextBox Name="TxtBoxDropEquipmentProbability"
+                                     Text="{Binding DropEquipmentProbability}"
+                                     Margin="10" Grid.Row="0" Grid.Column="1"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+            <TabItem Header="Комплекция"
+                     DataContext="{Binding ComplexionParams}">
+                <ScrollViewer>
+                    <StackPanel Margin="10"
+                                Orientation="Vertical">
+                        <GroupBox Header="Длина, мм"
+                                  Name="GrpBoxComplexionLengthMm"
+                                  DataContext="{Binding LengthMm}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="В полный рост"
+                                           Margin="10"
+                                           Grid.Row="0" Grid.Column="0"/>
+                                <TextBox Name="TxtBoxComplexionLengthFullHeight"
+                                         Text="{Binding FullHeightMm}"
+                                         Margin="10"
+                                         Grid.Row="0" Grid.Column="1"/>
+
+                                <TextBlock Text="В глубоком приседе"
+                                           Margin="10"
+                                           Grid.Row="1" Grid.Column="0"/>
+                                <TextBox Name="TxtBoxComplexionLengthDeepSquat"
+                                         Text="{Binding DeepSquatMm}"
+                                         Margin="10"
+                                         Grid.Row="1" Grid.Column="1"/>
+
+                                <TextBlock Text="Ползком"
+                                           Margin="10"
+                                           Grid.Row="2" Grid.Column="0"/>
+                                <TextBox Name="TxtBoxComplexionLengthCrawling"
+                                         Text="{Binding CrawlingMm}"
+                                         Margin="10"
+                                         Grid.Row="2" Grid.Column="1"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Высота, мм"
+                                  Name="GrpBoxComplexionHeightMm"
+                                  Margin="0 20 0 0"
+                                  DataContext="{Binding HeightMm}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="В полный рост"
+                                           Margin="10"
+                                           Grid.Row="0" Grid.Column="0"/>
+                                <TextBox Name="TxtBoxComplexionHeightFullHeight"
+                                         Text="{Binding FullHeightMm}"
+                                         Margin="10"
+                                         Grid.Row="0" Grid.Column="1"/>
+
+                                <TextBlock Text="В глубоком приседе"
+                                           Margin="10"
+                                           Grid.Row="1" Grid.Column="0"/>
+                                <TextBox Name="TxtBoxComplexionHeightDeepSquat"
+                                         Text="{Binding DeepSquatMm}"
+                                         Margin="10"
+                                         Grid.Row="1" Grid.Column="1"/>
+
+                                <TextBlock Text="Ползком"
+                                           Margin="10"
+                                           Grid.Row="2" Grid.Column="0"/>
+                                <TextBox Name="TxtBoxComplexionHeightCrawling"
+                                         Text="{Binding CrawlingMm}"
+                                         Margin="10"
+                                         Grid.Row="2" Grid.Column="1"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Ширина, мм"
+                                  Name="GrpBoxComplexionWidthMm"
+                                  Margin="0 20 0 0"
+                                  DataContext="{Binding WidthMm}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="В полный рост"
+                                           Margin="10"
+                                           Grid.Row="0" Grid.Column="0"/>
+                                <TextBox Name="TxtBoxComplexionWidthFullHeight"
+                                         Text="{Binding FullHeightMm}"
+                                         Margin="10"
+                                         Grid.Row="0" Grid.Column="1"/>
+
+                                <TextBlock Text="В глубоком приседе"
+                                           Margin="10"
+                                           Grid.Row="1" Grid.Column="0"/>
+                                <TextBox Name="TxtBoxComplexionWidthDeepSquat"
+                                         Text="{Binding DeepSquatMm}"
+                                         Margin="10"
+                                         Grid.Row="1" Grid.Column="1"/>
+
+                                <TextBlock Text="Ползком"
+                                           Margin="10"
+                                           Grid.Row="2" Grid.Column="0"/>
+                                <TextBox Name="TxtBoxComplexionWidthCrawling"
+                                         Text="{Binding CrawlingMm}"
+                                         Margin="10"
+                                         Grid.Row="2" Grid.Column="1"/>
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="10" Grid.Row="2" Grid.Column="1"
+                    HorizontalAlignment="Center">
+            <Button Name="BtnSubmit"
+                    Content="ОК"
+                    Click="BtnSubmit_Click"/>
+            <Button Name="BtnCancel"
+                    Margin="20 0 0 0"
+                    Content="Отмена"
+                    Click="BtnCancel_Click"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BC0B3671-3C59-4BA8-84E4-737F13477A85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D0DB4836-9EB8-4DAC-8BE3-3BCEEF915CFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkimElemLib.Wpf", "AkimElemLib.Wpf\AkimElemLib.Wpf.csproj", "{43970155-2EAC-4631-836E-8C39B7BFEDF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43970155-2EAC-4631-836E-8C39B7BFEDF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43970155-2EAC-4631-836E-8C39B7BFEDF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43970155-2EAC-4631-836E-8C39B7BFEDF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43970155-2EAC-4631-836E-8C39B7BFEDF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{43970155-2EAC-4631-836E-8C39B7BFEDF5} = {BC0B3671-3C59-4BA8-84E4-737F13477A85}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {162C8573-ED3E-4D3F-ABC8-DA4DEF0A5A28}
+	EndGlobalSection
+EndGlobal
