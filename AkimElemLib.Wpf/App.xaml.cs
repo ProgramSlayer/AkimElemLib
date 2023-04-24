@@ -4,6 +4,7 @@ using AkimElemLib.Wpf.Services.DialogWindowServices.Abstractions;
 using AkimElemLib.Wpf.Services.ExceptionHandlers;
 using AkimElemLib.Wpf.ViewModels;
 using AkimElemLib.Wpf.ViewModels.Intruders;
+using AkimElemLib.Wpf.ViewModels.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.Buildings;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.SpecificAreas;
 using Microsoft.EntityFrameworkCore;
@@ -36,10 +37,12 @@ public partial class App : Application
                 services.AddSingleton<IntruderListingViewModel>();
                 services.AddSingleton<SpecificAreaListingViewModel>();
                 services.AddSingleton<BuildingListingViewModel>();
+                services.AddSingleton<AerialConstructionListingViewModel>();
                 services.AddSingleton(services => new MainViewModel(
                     services.GetRequiredService<IntruderListingViewModel>(),
                     services.GetRequiredService<SpecificAreaListingViewModel>(),
-                    services.GetRequiredService<BuildingListingViewModel>()));
+                    services.GetRequiredService<BuildingListingViewModel>(),
+                    services.GetRequiredService<AerialConstructionListingViewModel>()));
 
                 services.AddSingleton(services => new MainWindow()
                 {
