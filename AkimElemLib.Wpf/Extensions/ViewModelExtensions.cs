@@ -1,7 +1,9 @@
-﻿using AkimElemLib.Wpf.Models.Intruders;
+﻿using AkimElemLib.Wpf.Models.CctvCams;
+using AkimElemLib.Wpf.Models.Intruders;
 using AkimElemLib.Wpf.Models.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.Models.SpecificObjects.Buildings;
 using AkimElemLib.Wpf.Models.SpecificObjects.SpecificAreas;
+using AkimElemLib.Wpf.ViewModels.CctvCams;
 using AkimElemLib.Wpf.ViewModels.Intruders;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.Buildings;
@@ -11,6 +13,67 @@ namespace AkimElemLib.Wpf.Extensions;
 
 public static class ViewModelExtensions
 {
+    public static StationaryCctvCam ToStationaryCctvCam(this EditStationaryCctvCamViewModel vm) => new StationaryCctvCam()
+    {
+        Model = vm.Model,
+        LightSensitivity = vm.LightSensitivity,
+        PowerSupplyType = vm.PowerSupplyType,
+        PowerConsumptionWatts = vm.PowerConsumptionWatts,
+        WorkingVoltage = vm.WorkingVoltage,
+        MatrixDiagonalHorizontal = vm.MatrixDiagonalHorizontal,
+        MatrixDiagonalVertical = vm.MatrixDiagonalVertical,
+        ImageResolutionHorizontal = vm.ImageResolutionHorizontal,
+        ImageResolutionVertical = vm.ImageResolutionVertical,
+        VariofocalLensParams = vm.VariofocalLensParams.ToCctvCamVariofocalLensParams(),
+        MinTemperature = vm.MinTemperature,
+        MaxTemperature = vm.MaxTemperature,
+        MatrixFormat = vm.MatrixFormat,
+        Omega = vm.Omega,
+        Phi = vm.Phi,
+        Alpha = vm.Alpha,
+        AlphaMin = vm.AlphaMin,
+        AlphaMax = vm.AlphaMax,
+        Beta = vm.Beta,
+        InstallationHeight = vm.InstallationHeight,
+        HasVideoAnalytics = vm.HasVideoAnalytics,
+        Fps = vm.Fps,
+        DetectionProbability = vm.DetectionProbability,
+        MinReactionTime = vm.MinReactionTime,
+    };
+
+    public static void ToStationaryCctvCam(this EditStationaryCctvCamViewModel source, StationaryCctvCam target)
+    {
+        target.Model = source.Model;
+        target.LightSensitivity = source.LightSensitivity;
+        target.PowerSupplyType = source.PowerSupplyType;
+        target.PowerConsumptionWatts = source.PowerConsumptionWatts;
+        target.WorkingVoltage = source.WorkingVoltage;
+        target.MatrixDiagonalHorizontal = source.MatrixDiagonalHorizontal;
+        target.MatrixDiagonalVertical = source.MatrixDiagonalVertical;
+        target.ImageResolutionHorizontal = source.ImageResolutionHorizontal;
+        target.ImageResolutionVertical = source.ImageResolutionVertical;
+        target.VariofocalLensParams = source.VariofocalLensParams.ToCctvCamVariofocalLensParams();
+        target.MinTemperature = source.MinTemperature;
+        target.MaxTemperature = source.MaxTemperature;
+        target.MatrixFormat = source.MatrixFormat;
+        target.Omega = source.Omega;
+        target.Phi = source.Phi;
+        target.Alpha = source.Alpha;
+        target.AlphaMin = source.AlphaMin;
+        target.AlphaMax = source.AlphaMax;
+        target.Beta = source.Beta;
+        target.InstallationHeight = source.InstallationHeight;
+        target.HasVideoAnalytics = source.HasVideoAnalytics;
+        target.Fps = source.Fps;
+        target.DetectionProbability = source.DetectionProbability;
+        target.MinReactionTime = source.MinReactionTime;
+    }
+
+    public static CctvCamVariofocalLensParams ToCctvCamVariofocalLensParams(this EditCctvCamVariofocalLensParamsViewModel vm)
+    {
+        return new CctvCamVariofocalLensParams(vm.VariofocalLensIsUsed, vm.MinFocalLength, vm.MaxFocalLength);
+    }
+
     public static AerialConstruction ToAerialConstruction(this EditAerialConstructionViewModel vm) => new()
     {
         Name = vm.Name,

@@ -63,8 +63,45 @@
                 </Grid>
             </TabItem>
             
-            <TabItem Header="Стационарные камеры видеонаблюдения">
-                
+            <TabItem Header="Стационарные камеры видеонаблюдения"
+                     DataContext="{Binding StationaryCctvCamListingViewModel}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10"
+                                Grid.Row="0"
+                                HorizontalAlignment="Center">
+                        <Button Name="BtnLoadStationaryCctvCams"
+                                Command="{Binding LoadStationaryCctvCamsCommand}"
+                                Content="Загрузить"/>
+                        <Button Name="BtnAddStationaryCctvCam"
+                                Command="{Binding AddStationaryCctvCamCommand}"
+                                Content="Добавить"
+                                Margin="20 0 0 0"/>
+                        <Button Name="BtnEditStationaryCctvCam"
+                                Command="{Binding EditStationaryCctvCamCommand}"
+                                Content="Изменить"
+                                Margin="20 0 0 0"/>
+                        <Button Name="BtnDeleteStationaryCctvCam"
+                                Command="{Binding DeleteStationaryCctvCamCommand}"
+                                Content="Удалить"
+                                Margin="20 0 0 0"/>
+                    </StackPanel>
+
+                    <DataGrid Margin="10"
+                              Grid.Row="1"
+                              AutoGenerateColumns="True"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              ItemsSource="{Binding StationaryCctvCams}"
+                              SelectedItem="{Binding SelectedStationaryCctvCam}">
+
+                    </DataGrid>
+                </Grid>
             </TabItem>
             
             <TabItem Header="Специфические участки"

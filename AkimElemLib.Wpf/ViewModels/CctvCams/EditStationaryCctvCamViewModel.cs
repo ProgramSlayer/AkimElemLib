@@ -34,6 +34,37 @@ public class EditStationaryCctvCamViewModel : ViewModelBase
     private double _detectionProbability;
     private double _minReactionTime;
 
+    public EditStationaryCctvCamViewModel(StationaryCctvCam? cam = null)
+    {
+        if (cam is not null)
+        {
+            Model = cam.Model;
+            LightSensitivity = cam.LightSensitivity;
+            PowerSupplyType = cam.PowerSupplyType;
+            PowerConsumptionWatts = cam.PowerConsumptionWatts;
+            WorkingVoltage = cam.WorkingVoltage;
+            MatrixDiagonalHorizontal = cam.MatrixDiagonalHorizontal;
+            MatrixDiagonalVertical = cam.MatrixDiagonalVertical;
+            ImageResolutionHorizontal = cam.ImageResolutionHorizontal;
+            ImageResolutionVertical = cam.ImageResolutionVertical;
+            VariofocalLensParams = new(cam.VariofocalLensParams);
+            MinTemperature = cam.MinTemperature;
+            MaxTemperature = cam.MaxTemperature;
+            MatrixFormat = cam.MatrixFormat;
+            Omega = cam.Omega;
+            Phi = cam.Phi;
+            Alpha = cam.Alpha;
+            AlphaMin = cam.AlphaMin;
+            AlphaMax = cam.AlphaMax;
+            Beta = cam.Beta;
+            InstallationHeight = cam.InstallationHeight;
+            HasVideoAnalytics = cam.HasVideoAnalytics;
+            Fps = cam.Fps;
+            DetectionProbability = cam.DetectionProbability;
+            MinReactionTime = cam.MinReactionTime;
+        }
+    }
+
     public static PowerSupplyTypes[] PowerSupplyTypes => Enum.GetValues<PowerSupplyTypes>();
     public static CctvCamMatrixFormats[] MatrixFormats => Enum.GetValues<CctvCamMatrixFormats>();
     public string Model
@@ -117,7 +148,7 @@ public class EditStationaryCctvCamViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-    public EditCctvCamVariofocalLensViewModel VariofocalLensParams { get; set; } = new();
+    public EditCctvCamVariofocalLensParamsViewModel VariofocalLensParams { get; set; } = new();
     public double MinTemperature
     {
         get => _minTemperature; 

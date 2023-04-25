@@ -1,10 +1,22 @@
-﻿namespace AkimElemLib.Wpf.ViewModels.CctvCams;
+﻿using AkimElemLib.Wpf.Models.CctvCams;
 
-public class EditCctvCamVariofocalLensViewModel : ViewModelBase
+namespace AkimElemLib.Wpf.ViewModels.CctvCams;
+
+public class EditCctvCamVariofocalLensParamsViewModel : ViewModelBase
 {
     private bool _variofocalLensIsUsed;
     private double _minFocalLength;
     private double _maxFocalLength;
+
+    public EditCctvCamVariofocalLensParamsViewModel(CctvCamVariofocalLensParams? variofocalLensParams = null)
+    {
+        if (variofocalLensParams is not null)
+        {
+            VariofocalLensIsUsed = variofocalLensParams.IsUsed;
+            MinFocalLength = variofocalLensParams.MinFocalLength;
+            MaxFocalLength = variofocalLensParams.MaxFocalLength;
+        }
+    }
 
     public bool VariofocalLensIsUsed
     {
