@@ -6,6 +6,7 @@ namespace AkimElemLib.Wpf.Models.Intruders;
 public class Intruder
 {
     public Guid Id { get; private set; } = Guid.NewGuid();
+    public required string Name { get; set; }
     public required IntruderVelocityParams VelocityParams { get; set; }
     public required IntruderAccomplicesParams AccomplicesParams { get; set; }
     public required IntruderCarParams CarParams { get; set; }

@@ -28,6 +28,20 @@
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical"
                                 Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Имя нарушителя"
+                                       Margin="10"
+                                       Grid.Column="0"/>
+                            <TextBox Name="TxtBoxIntruderName"
+                                     Text="{Binding Name}"
+                                     Margin="10"
+                                     Grid.Column="1"/>
+                        </Grid>
                         <GroupBox Header="Скорость передвижения"
                                   Name="GrpBoxVelocity"
                                   DataContext="{Binding VelocityParams}">

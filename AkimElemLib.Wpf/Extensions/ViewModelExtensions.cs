@@ -136,6 +136,7 @@ public static class ViewModelExtensions
 
     public static Intruder ToIntruder(this EditIntruderViewModel vm) => new()
     {
+        Name = vm.Name,
         VelocityParams = vm.VelocityParams.ToIntruderVelocityParams(),
         AccomplicesParams = vm.AccomplicesParams.ToIntruderAccomplicesParams(),
         CarParams = vm.CarParams.ToIntruderCarParams(),

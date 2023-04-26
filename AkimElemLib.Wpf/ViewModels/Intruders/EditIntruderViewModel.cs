@@ -6,7 +6,18 @@ namespace AkimElemLib.Wpf.ViewModels.Intruders;
 
 public class EditIntruderViewModel : ViewModelBase
 {
+    private string _name = string.Empty;
     private double _dropEquipmentProbability;
+
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            _name = value;
+            OnPropertyChanged();
+        }
+    }
 
     public EditIntruderVelocityParamsViewModel VelocityParams { get; set; } = new();
     public EditIntruderAccomplicesParamsViewModel AccomplicesParams { get; set; } = new();
@@ -26,25 +37,24 @@ public class EditIntruderViewModel : ViewModelBase
     }
     public EditIntruderComplexionParamsViewModel ComplexionParams { get; set; } = new();
 
-    public EditIntruderViewModel()
+    public EditIntruderViewModel(Intruder? intruder = null)
     {
-    }
-
-    public EditIntruderViewModel(Intruder intruder)
-    {
-        ArgumentNullException.ThrowIfNull(intruder, nameof(intruder));
-        VelocityParams = new(intruder.VelocityParams);
-        AccomplicesParams = new(intruder.AccomplicesParams);
-        CarParams = new(intruder.CarParams);
-        PsychophysicalParams = new(intruder.PsychophysicalParams);
-        LightEquipment = new(intruder.LightEquipment);
-        MediumEquipment = new(intruder.MediumEquipment);
-        HeavyEquipment = new(intruder.HeavyEquipment);
-        DropEquipmentProbability = intruder.DropEquipmentProbability;
-        ComplexionParams = new(
-            lengthMm: new(intruder.LengthParams),
-            heightMm: new(intruder.HeightParams),
-            widthMm: new(intruder.WidthParams));
+        if (intruder is not null)
+        {
+            Name = intruder.Name;
+            VelocityParams = new(intruder.VelocityParams);
+            AccomplicesParams = new(intruder.AccomplicesParams);
+            CarParams = new(intruder.CarParams);
+            PsychophysicalParams = new(intruder.PsychophysicalParams);
+            LightEquipment = new(intruder.LightEquipment);
+            MediumEquipment = new(intruder.MediumEquipment);
+            HeavyEquipment = new(intruder.HeavyEquipment);
+            DropEquipmentProbability = intruder.DropEquipmentProbability;
+            ComplexionParams = new(
+                lengthMm: new(intruder.LengthParams),
+                heightMm: new(intruder.HeightParams),
+                widthMm: new(intruder.WidthParams)); 
+        }
     }
 }
 

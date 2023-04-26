@@ -11,6 +11,7 @@ public class IntruderReadOnlyViewModel : ViewModelBase
         _intruder = intruder ?? throw new System.ArgumentNullException(nameof(intruder));
 
     public Guid Id => _intruder.Id;
+    public string Name => _intruder.Name;
     public string VelocityParams => 
         $"Velocity Measure Unit: {_intruder.VelocityParams.VelocityMeasureUnit}\n" +
         $"Min Velocity: {_intruder.VelocityParams.MinVelocity}\n" +
