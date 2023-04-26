@@ -1,0 +1,139 @@
+﻿<Window x:Class="AkimElemLib.Wpf.Views.EditBarrierDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:barriers="clr-namespace:AkimElemLib.Wpf.ViewModels.ISOs.Barriers"
+        d:DataContext="{d:DesignInstance Type=barriers:EditBarrierViewModel}"
+        mc:Ignorable="d"
+        Title="Параметры барьера" Height="700" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Margin="10"
+                      Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Наименование"
+                           Margin="10"
+                           Grid.Row="0" Grid.Column="0"/>
+                <TextBox Name="TxtBoxBarrierName"
+                         Text="{Binding Name}"
+                         Margin="10"
+                         Grid.Row="0" Grid.Column="1"/>
+
+                <TextBlock Text="Высота, м"
+                           Margin="10"
+                           Grid.Row="1" Grid.Column="0"/>
+                <TextBox Name="TxtBoxBarrierHeight"
+                         Text="{Binding Height}"
+                         Margin="10"
+                         Grid.Row="1" Grid.Column="1"/>
+
+                <TextBlock Text="Высота расположения относительно земли, м"
+                           Margin="10"
+                           Grid.Row="2" Grid.Column="0"/>
+                <TextBox Name="TxtBoxBarrierHeightRelativeToGround"
+                         Text="{Binding HeightRelativeToGround}"
+                         Margin="10"
+                         Grid.Row="2" Grid.Column="1"/>
+
+                <TextBlock Text="Ширина, м"
+                           Margin="10"
+                           Grid.Row="3" Grid.Column="0"/>
+                <TextBox Name="TxtBoxBarrierWidth"
+                         Text="{Binding Width}"
+                         Margin="10"
+                         Grid.Row="3" Grid.Column="1"/>
+
+                <TextBlock Text="Прозрачность"
+                           Margin="10"
+                           Grid.Row="4" Grid.Column="0"/>
+                <TextBox Name="TxtBoxBarrierTransparency"
+                         Text="{Binding Transparency}"
+                         Margin="10"
+                         Grid.Row="4" Grid.Column="1"/>
+
+                <TextBlock Text="Замкнутость"
+                           Margin="10"
+                           Grid.Row="5" Grid.Column="0"/>
+                <CheckBox Name="ChkBoxBarrierIsClosed"
+                          IsChecked="{Binding IsClosed}"
+                          Margin="10"
+                          Grid.Row="5" Grid.Column="1"/>
+
+                <TextBlock Text="Тараноустойчивость"
+                           Margin="10"
+                           Grid.Row="6" Grid.Column="0"/>
+                <CheckBox Name="ChkBoxBarrierIsRamResistant"
+                          IsChecked="{Binding IsRamResistant}"
+                          Margin="10"
+                          Grid.Row="6" Grid.Column="1"/>
+
+                <TextBlock Text="Минимальное время преодоления, с"
+                           Margin="10"
+                           Grid.Row="7" Grid.Column="0"/>
+                <TextBox Name="TxtBoxBarrierMinOvercomeTime"
+                         Text="{Binding MinOvercomeTime}"
+                         Margin="10"
+                         Grid.Row="7" Grid.Column="1"/>
+
+                <TextBlock Text="Максимальное время преодоления, с"
+                           Margin="10"
+                           Grid.Row="8" Grid.Column="0"/>
+                <TextBox Name="TxtBoxBarrierMaxOvercomeTime"
+                         Text="{Binding MaxOvercomeTime}"
+                         Margin="10"
+                         Grid.Row="8" Grid.Column="1"/>
+
+                <TextBlock Text="Преодолимость для групп реагирования"
+                           Margin="10"
+                           Grid.Row="9" Grid.Column="0"/>
+                <CheckBox Name="ChkBoxBarrierIsSurmountableByResponseTeams"
+                          IsChecked="{Binding IsSurmountableByResponseTeams}"
+                          Margin="10"
+                          Grid.Row="9" Grid.Column="1"/>
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="10" HorizontalAlignment="Center" 
+                    Grid.Row="2" Grid.Column="1">
+            <Button Name="BtnSubmit"
+                    Content="OK"
+                    Click="BtnSubmit_Click"/>
+            <Button Name="BtnCancel"
+                    Margin="20 0 0 0"
+                    Content="Отмена"
+                    Click="BtnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

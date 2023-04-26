@@ -226,6 +226,47 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
+
+            <TabItem Header="Барьеры"
+                     DataContext="{Binding BarrierListingViewModel}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10"
+                                Grid.Row="0"
+                                HorizontalAlignment="Center">
+                        <Button Name="BtnLoadBarriers"
+                                Command="{Binding LoadBarriersCommand}"
+                                Content="Загрузить"/>
+                        <Button Name="BtnAddBarrier"
+                                Command="{Binding AddBarrierCommand}"
+                                Content="Добавить"
+                                Margin="20 0 0 0"/>
+                        <Button Name="BtnEditBarrier"
+                                Command="{Binding EditBarrierCommand}"
+                                Content="Изменить"
+                                Margin="20 0 0 0"/>
+                        <Button Name="BtnDeleteBarrier"
+                                Command="{Binding DeleteBarrierCommand}"
+                                Content="Удалить"
+                                Margin="20 0 0 0"/>
+                    </StackPanel>
+
+                    <DataGrid Margin="10"
+                              Grid.Row="1"
+                              AutoGenerateColumns="True"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              ItemsSource="{Binding Barriers}"
+                              SelectedItem="{Binding SelectedBarrier}">
+
+                    </DataGrid>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using AkimElemLib.Wpf.Models.CctvCams;
 using AkimElemLib.Wpf.Models.Intruders;
+using AkimElemLib.Wpf.Models.ISOs;
 using AkimElemLib.Wpf.Models.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.Models.SpecificObjects.Buildings;
 using AkimElemLib.Wpf.Models.SpecificObjects.SpecificAreas;
@@ -8,11 +9,40 @@ using AkimElemLib.Wpf.ViewModels.Intruders;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.Buildings;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.SpecificAreas;
+using AkimElemLib.Wpf.ViewModels.ISOs.Barriers;
 
 namespace AkimElemLib.Wpf.Extensions;
 
 public static class ViewModelExtensions
 {
+    public static Barrier ToBarrier(this EditBarrierViewModel vm) => new()
+    {
+        Name = vm.Name,
+        Height = vm.Height,
+        HeightRelativeToGround = vm.HeightRelativeToGround,
+        Width = vm.Width,
+        Transparency = vm.Transparency,
+        IsClosed = vm.IsClosed,
+        IsRamResistant = vm.IsRamResistant,
+        MinOvercomeTime = vm.MinOvercomeTime,
+        MaxOvercomeTime = vm.MaxOvercomeTime,
+        IsSurmountableByResponseTeams = vm.IsSurmountableByResponseTeams,
+    };
+
+    public static void ToBarrier(this EditBarrierViewModel source, Barrier target)
+    {
+        target.Name = source.Name;
+        target.Height = source.Height;
+        target.HeightRelativeToGround = source.HeightRelativeToGround;
+        target.Width = source.Width;
+        target.Transparency = source.Transparency;
+        target.IsClosed = source.IsClosed;
+        target.IsRamResistant = source.IsRamResistant;
+        target.MinOvercomeTime = source.MinOvercomeTime;
+        target.MaxOvercomeTime = source.MaxOvercomeTime;
+        target.IsSurmountableByResponseTeams = source.IsSurmountableByResponseTeams;
+    }
+
     public static StationaryCctvCam ToStationaryCctvCam(this EditStationaryCctvCamViewModel vm) => new StationaryCctvCam()
     {
         Model = vm.Model,

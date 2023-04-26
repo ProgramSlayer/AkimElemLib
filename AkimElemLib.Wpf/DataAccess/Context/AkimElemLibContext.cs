@@ -1,6 +1,7 @@
 ﻿using AkimElemLib.Wpf.Models.CctvCams;
 using AkimElemLib.Wpf.Models.Common;
 using AkimElemLib.Wpf.Models.Intruders;
+using AkimElemLib.Wpf.Models.ISOs;
 using AkimElemLib.Wpf.Models.SpecificObjects;
 using AkimElemLib.Wpf.Models.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.Models.SpecificObjects.Buildings;
@@ -34,6 +35,7 @@ public class AkimElemLibContext : DbContext
     public DbSet<Building> Buildings { get; set; }
     public DbSet<AerialConstruction> AerialConstructions { get; set; }
     public DbSet<StationaryCctvCam> StationaryCctvCams { get; set; }
+    public DbSet<Barrier> Barriers { get; set; }
 }
 
 public class ProbabilityConverter : ValueConverter<Probability, double>
@@ -81,5 +83,14 @@ public class StationaryCctvCamEntityTypeConfiguration : IEntityTypeConfiguration
         builder.ToTable(nameof(StationaryCctvCam));
         builder.HasKey(c => c.Id);
         builder.OwnsOne(c => c.VariofocalLensParams);
+    }
+}
+
+public class BarrierEntityTypeConfiguration : IEntityTypeConfiguration<Barrier>
+{
+    public void Configure(EntityTypeBuilder<Barrier> builder)
+    {
+        builder.ToTable(nameof(Barrier));
+        builder.HasKey(b => b.Id);
     }
 }
