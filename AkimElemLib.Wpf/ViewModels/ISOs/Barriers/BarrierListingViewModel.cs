@@ -46,6 +46,7 @@ public class BarrierListingViewModel : ViewModelBase
     public void LoadBarriers(IEnumerable<Barrier> barriers)
     {
         ArgumentNullException.ThrowIfNull(barriers, nameof(barriers));
+        _barriers.Clear();
         foreach (var barrier in barriers)
         {
             _barriers.Add(new(barrier));

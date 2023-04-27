@@ -48,6 +48,7 @@ public class FenceListingViewModel : ViewModelBase
     public void LoadFences(IEnumerable<Fence> fences)
     {
         ArgumentNullException.ThrowIfNull(fences, nameof(fences));
+        _fences.Clear();
         foreach (var fence in fences)
         {
             _fences.Add(new(fence));

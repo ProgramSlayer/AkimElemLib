@@ -48,6 +48,7 @@ public class StationaryCctvCamListingViewModel : ViewModelBase
     public void LoadCams(IEnumerable<StationaryCctvCam> cams)
     {
         ArgumentNullException.ThrowIfNull(cams, nameof(cams));
+        _cams.Clear();
         foreach (var cam in cams)
         {
             _cams.Add(new StationaryCctvCamReadOnlyViewModel(cam));
