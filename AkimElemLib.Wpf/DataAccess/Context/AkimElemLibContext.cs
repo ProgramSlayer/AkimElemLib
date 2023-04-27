@@ -36,6 +36,7 @@ public class AkimElemLibContext : DbContext
     public DbSet<AerialConstruction> AerialConstructions { get; set; }
     public DbSet<StationaryCctvCam> StationaryCctvCams { get; set; }
     public DbSet<Barrier> Barriers { get; set; }
+    public DbSet<Fence> Fences { get; set; }
 }
 
 public class ProbabilityConverter : ValueConverter<Probability, double>
@@ -92,5 +93,17 @@ public class BarrierEntityTypeConfiguration : IEntityTypeConfiguration<Barrier>
     {
         builder.ToTable(nameof(Barrier));
         builder.HasKey(b => b.Id);
+    }
+}
+
+public class FenceEntityTypeConfiguration : IEntityTypeConfiguration<Fence>
+{
+    public void Configure(EntityTypeBuilder<Fence> builder)
+    {
+        builder.ToTable(nameof(Fence));
+        builder.HasKey(f => f.Id);
+        builder.OwnsOne(f => f.MainSurfaceParams);
+        builder.OwnsOne(f => f.TopParams);
+        builder.OwnsOne(f => f.BottomParams);
     }
 }

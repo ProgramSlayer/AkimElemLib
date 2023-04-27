@@ -267,6 +267,47 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
+
+            <TabItem Header="Ограждения"
+                     DataContext="{Binding FenceListingViewModel}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10"
+                                Grid.Row="0"
+                                HorizontalAlignment="Center">
+                        <Button Name="BtnLoadFences"
+                                Command="{Binding LoadFencesCommand}"
+                                Content="Загрузить"/>
+                        <Button Name="BtnAddFence"
+                                Command="{Binding AddFenceCommand}"
+                                Content="Добавить"
+                                Margin="20 0 0 0"/>
+                        <Button Name="BtnEditFence"
+                                Command="{Binding EditFenceCommand}"
+                                Content="Изменить"
+                                Margin="20 0 0 0"/>
+                        <Button Name="BtnDeleteFence"
+                                Command="{Binding DeleteFenceCommand}"
+                                Content="Удалить"
+                                Margin="20 0 0 0"/>
+                    </StackPanel>
+
+                    <DataGrid Margin="10"
+                              Grid.Row="1"
+                              AutoGenerateColumns="True"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              ItemsSource="{Binding Fences}"
+                              SelectedItem="{Binding SelectedFence}">
+
+                    </DataGrid>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

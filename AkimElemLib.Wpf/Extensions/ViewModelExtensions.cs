@@ -6,15 +6,59 @@ using AkimElemLib.Wpf.Models.SpecificObjects.Buildings;
 using AkimElemLib.Wpf.Models.SpecificObjects.SpecificAreas;
 using AkimElemLib.Wpf.ViewModels.CctvCams;
 using AkimElemLib.Wpf.ViewModels.Intruders;
+using AkimElemLib.Wpf.ViewModels.ISOs.Barriers;
+using AkimElemLib.Wpf.ViewModels.ISOs.Fences;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.Buildings;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.SpecificAreas;
-using AkimElemLib.Wpf.ViewModels.ISOs.Barriers;
 
 namespace AkimElemLib.Wpf.Extensions;
 
 public static class ViewModelExtensions
 {
+    public static void ToFence(this EditFenceViewModel source, Fence target)
+    {
+        target.Name = source.Name;
+        target.Height = source.Height;
+        target.Width = source.Width;
+        target.Transparency = source.Transparency;
+        target.IsClosed = source.IsClosed;
+        target.IsRamResistant = source.IsRamResistant;
+        target.MinOvercomeTime = source.MinOvercomeTime;
+        target.MaxOvercomeTime = source.MaxOvercomeTime;
+        target.HasBase = source.HasBase;
+        target.HasAluminiumBarbedTape = source.HasAluminiumBarbedTape;
+        target.MainSurfaceParams = source.MainSurfaceParams.ToFenceMainSurfaceParams();
+        target.TopParams = source.TopParams.ToFenceTopParams();
+        target.BottomParams = source.BottomParams.ToFenceBottomParams();
+    }
+
+    public static Fence ToFence(this EditFenceViewModel vm) => new()
+    {
+        Name = vm.Name,
+        Height = vm.Height,
+        Width = vm.Width,
+        Transparency = vm.Transparency,
+        IsClosed = vm.IsClosed,
+        IsRamResistant = vm.IsRamResistant,
+        MinOvercomeTime = vm.MinOvercomeTime,
+        MaxOvercomeTime = vm.MaxOvercomeTime,
+        HasBase = vm.HasBase,
+        HasAluminiumBarbedTape = vm.HasAluminiumBarbedTape,
+        MainSurfaceParams = vm.MainSurfaceParams.ToFenceMainSurfaceParams(),
+        TopParams = vm.TopParams.ToFenceTopParams(),
+        BottomParams = vm.BottomParams.ToFenceBottomParams(),
+    };
+
+    public static FenceMainSurfaceParams ToFenceMainSurfaceParams(this EditFenceMainSurfaceParamsViewModel vm) => 
+        new(vm.Name, vm.Height, vm.Width, vm.SendsVibrations);
+
+    public static FenceTopParams ToFenceTopParams(this EditFenceTopParamsViewModel vm) =>
+        new(vm.Name, vm.Height, vm.Width, vm.SendsVibrations, vm.SendsVibrationsToMainSurface);
+
+    public static FenceBottomParams ToFenceBottomParams(this EditFenceBottomParamsViewModel vm) =>
+        new(vm.Name, vm.Depth, vm.Width, vm.SendsVibrations, vm.SendsVibrationsToMainSurface);
+
     public static Barrier ToBarrier(this EditBarrierViewModel vm) => new()
     {
         Name = vm.Name,

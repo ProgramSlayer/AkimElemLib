@@ -1,0 +1,315 @@
+﻿<Window x:Class="AkimElemLib.Wpf.Views.EditFenceDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fences="clr-namespace:AkimElemLib.Wpf.ViewModels.ISOs.Fences"
+        d:DataContext="{d:DesignInstance Type=fences:EditFenceViewModel}"
+        mc:Ignorable="d"
+        Title="Параметры ограждения" Height="800" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Margin="10"
+                      Grid.Row="1" Grid.Column="1">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Наименование"
+                               Margin="10"
+                               Grid.Row="0" Grid.Column="0"/>
+                    <TextBox Name="TxtBoxFenceName"
+                             Text="{Binding Name}"
+                             Margin="10"
+                             Grid.Row="0" Grid.Column="1"/>
+
+                    <TextBlock Text="Высота, м"
+                               Margin="10"
+                               Grid.Row="1" Grid.Column="0"/>
+                    <TextBox Name="TxtBoxFenceHeight"
+                             Text="{Binding Height}"
+                             Margin="10"
+                             Grid.Row="1" Grid.Column="1"/>
+
+                    <TextBlock Text="Ширина, м"
+                               Margin="10"
+                               Grid.Row="2" Grid.Column="0"/>
+                    <TextBox Name="TxtBoxFenceWidth"
+                             Text="{Binding Width}"
+                             Margin="10"
+                             Grid.Row="2" Grid.Column="1"/>
+
+                    <TextBlock Text="Коэффициент прозрачности"
+                               Margin="10"
+                               Grid.Row="3" Grid.Column="0"/>
+                    <TextBox Name="TxtBoxFenceTransparency"
+                             Text="{Binding Transparency}"
+                             Margin="10"
+                             Grid.Row="3" Grid.Column="1"/>
+
+                    <TextBlock Text="Замкнутость"
+                               Margin="10"
+                               Grid.Row="4" Grid.Column="0"/>
+                    <CheckBox Name="ChkBoxFenceIsClosed"
+                              IsChecked="{Binding IsClosed}"
+                              Margin="10"
+                              Grid.Row="4" Grid.Column="1"/>
+
+                    <TextBlock Text="Тараноустойчивость"
+                               Margin="10"
+                               Grid.Row="5" Grid.Column="0"/>
+                    <CheckBox Name="ChkBoxFenceIsRamResistant"
+                              IsChecked="{Binding IsRamResistant}"
+                              Margin="10"
+                              Grid.Row="5" Grid.Column="1"/>
+
+                    <TextBlock Text="Минимальное время преодоления, с"
+                               Margin="10"
+                               Grid.Row="6" Grid.Column="0"/>
+                    <TextBox Name="TxtBoxFenceMinOvercomeTime"
+                             Text="{Binding MinOvercomeTime}"
+                             Margin="10"
+                             Grid.Row="6" Grid.Column="1"/>
+
+                    <TextBlock Text="Максимальное время преодоления, с"
+                               Margin="10"
+                               Grid.Row="7" Grid.Column="0"/>
+                    <TextBox Name="TxtBoxFenceMaxOvercomeTime"
+                             Text="{Binding MaxOvercomeTime}"
+                             Margin="10"
+                             Grid.Row="7" Grid.Column="1"/>
+
+                    <TextBlock Text="Наличие цоколя"
+                               Margin="10"
+                               Grid.Row="8" Grid.Column="0"/>
+                    <CheckBox Name="ChkBoxFenceHasBase"
+                              IsChecked="{Binding HasBase}"
+                              Margin="10"
+                              Grid.Row="8" Grid.Column="1"/>
+
+                    <TextBlock Text="Наличие алюминиевой колючей ленты"
+                               Margin="10"
+                               Grid.Row="9" Grid.Column="0"/>
+                    <CheckBox Name="ChkBoxFenceHasAluminiumBarbedTape"
+                              IsChecked="{Binding HasAluminiumBarbedTape}"
+                              Margin="10"
+                              Grid.Row="9" Grid.Column="1"/>
+                </Grid>
+
+                <GroupBox Name="GrpBoxFenceMainSurface"
+                          DataContext="{Binding MainSurfaceParams}"
+                          Header="Основное полотно"
+                          Margin="0 20 0 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Наименование"
+                                   Margin="10"
+                                   Grid.Row="0" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxFenceMainSurfaceName"
+                                 Text="{Binding Name}"
+                                 Margin="10"
+                                 Grid.Row="0" Grid.Column="1"/>
+
+                        <TextBlock Text="Высота, м"
+                                   Margin="10"
+                                   Grid.Row="1" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxFenceMainSurfaceHeight"
+                                 Text="{Binding Height}"
+                                 Margin="10"
+                                 Grid.Row="1" Grid.Column="1"/>
+
+                        <TextBlock Text="Ширина, м"
+                                   Margin="10"
+                                   Grid.Row="2" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxFenceMainSurfaceWidth"
+                                 Text="{Binding Width}"
+                                 Margin="10"
+                                 Grid.Row="2" Grid.Column="1"/>
+
+                        <TextBlock Text="Передаёт вибрации"
+                                   Margin="10"
+                                   Grid.Row="3" Grid.Column="0"/>
+                        <CheckBox Name="ChkBoxFenceMainSurfaceSendsVibrations"
+                                  IsChecked="{Binding SendsVibrations}"
+                                  Margin="10"
+                                  Grid.Row="3" Grid.Column="1"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Name="GrpBoxFenceTop"
+                          DataContext="{Binding TopParams}"
+                          Header="Верхнее ограждение"
+                          Margin="0 20 0 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Наименование"
+                                   Margin="10"
+                                   Grid.Row="0" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxFenceTopName"
+                                 Text="{Binding Name}"
+                                 Margin="10"
+                                 Grid.Row="0" Grid.Column="1"/>
+
+                        <TextBlock Text="Высота, м"
+                                   Margin="10"
+                                   Grid.Row="1" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxFenceTopHeight"
+                                 Text="{Binding Height}"
+                                 Margin="10"
+                                 Grid.Row="1" Grid.Column="1"/>
+
+                        <TextBlock Text="Ширина, м"
+                                   Margin="10"
+                                   Grid.Row="2" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxFenceTopWidth"
+                                 Text="{Binding Width}"
+                                 Margin="10"
+                                 Grid.Row="2" Grid.Column="1"/>
+
+                        <TextBlock Text="Передаёт вибрации"
+                                   Margin="10"
+                                   Grid.Row="3" Grid.Column="0"/>
+                        <CheckBox Name="ChkBoxFenceTopSendsVibrations"
+                                  IsChecked="{Binding SendsVibrations}"
+                                  Margin="10"
+                                  Grid.Row="3" Grid.Column="1"/>
+
+                        <TextBlock Text="Передаёт вибрации на основное полотно"
+                                   Margin="10"
+                                   Grid.Row="4" Grid.Column="0"/>
+                        <CheckBox Name="ChkBoxFenceTopSendsVibrationsToMainSurface"
+                                  IsChecked="{Binding SendsVibrationsToMainSurface}"
+                                  Margin="10"
+                                  Grid.Row="4" Grid.Column="1"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Name="GrpBoxFenceBottom"
+                          DataContext="{Binding BottomParams}"
+                          Header="Нижнее ограждение"
+                          Margin="0 20 0 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Наименование"
+                                   Margin="10"
+                                   Grid.Row="0" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxFenceBottomName"
+                                 Text="{Binding Name}"
+                                 Margin="10"
+                                 Grid.Row="0" Grid.Column="1"/>
+
+                        <TextBlock Text="Глубина, м"
+                                   Margin="10"
+                                   Grid.Row="1" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxFenceBottomDepth"
+                                 Text="{Binding Depth}"
+                                 Margin="10"
+                                 Grid.Row="1" Grid.Column="1"/>
+
+                        <TextBlock Text="Ширина, м"
+                                   Margin="10"
+                                   Grid.Row="2" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxFenceBottomWidth"
+                                 Text="{Binding Width}"
+                                 Margin="10"
+                                 Grid.Row="2" Grid.Column="1"/>
+
+                        <TextBlock Text="Передаёт вибрации"
+                                   Margin="10"
+                                   Grid.Row="3" Grid.Column="0"/>
+                        <CheckBox Name="ChkBoxFenceBottomSendsVibrations"
+                                  IsChecked="{Binding SendsVibrations}"
+                                  Margin="10"
+                                  Grid.Row="3" Grid.Column="1"/>
+
+                        <TextBlock Text="Передаёт вибрации на основное полотно"
+                                   Margin="10"
+                                   Grid.Row="4" Grid.Column="0"/>
+                        <CheckBox Name="ChkBoxFenceBottomSendsVibrationsToMainSurface"
+                                  IsChecked="{Binding SendsVibrationsToMainSurface}"
+                                  Margin="10"
+                                  Grid.Row="4" Grid.Column="1"/>
+                    </Grid>
+                </GroupBox>
+                
+                
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="10" HorizontalAlignment="Center" 
+                    Grid.Row="2" Grid.Column="1">
+            <Button Name="BtnSubmit"
+                    Content="OK"
+                    Click="BtnSubmit_Click"/>
+            <Button Name="BtnCancel"
+                    Margin="20 0 0 0"
+                    Content="Отмена"
+                    Click="BtnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

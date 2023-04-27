@@ -3,6 +3,7 @@ using System;
 using AkimElemLib.Wpf.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AkimElemLib.Wpf.DataAccess.Migrations
 {
     [DbContext(typeof(AkimElemLibContext))]
-    partial class AkimElemLibContextModelSnapshot : ModelSnapshot
+    [Migration("20230427094908_Create_Fence_Entity")]
+    partial class Create_Fence_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");

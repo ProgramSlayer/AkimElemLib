@@ -1,6 +1,7 @@
 ﻿using AkimElemLib.Wpf.ViewModels.CctvCams;
 using AkimElemLib.Wpf.ViewModels.Intruders;
 using AkimElemLib.Wpf.ViewModels.ISOs.Barriers;
+using AkimElemLib.Wpf.ViewModels.ISOs.Fences;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.Buildings;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.SpecificAreas;
@@ -16,6 +17,7 @@ public class MainViewModel : ViewModelBase
     public AerialConstructionListingViewModel AerialConstructionListingViewModel { get; }
     public StationaryCctvCamListingViewModel StationaryCctvCamListingViewModel { get; }
     public BarrierListingViewModel BarrierListingViewModel { get; }
+    public FenceListingViewModel FenceListingViewModel { get; }
 
     public MainViewModel(
         IntruderListingViewModel intruderListingViewModel,
@@ -23,7 +25,8 @@ public class MainViewModel : ViewModelBase
         BuildingListingViewModel buildingListingViewModel,
         AerialConstructionListingViewModel aerialConstructionListingViewModel,
         StationaryCctvCamListingViewModel stationaryCctvCamListingViewModel,
-        BarrierListingViewModel barrierListingViewModel)
+        BarrierListingViewModel barrierListingViewModel,
+        FenceListingViewModel fenceListingViewModel)
     {
         ArgumentNullException.ThrowIfNull(intruderListingViewModel, nameof(intruderListingViewModel));
         ArgumentNullException.ThrowIfNull(specificAreaListingViewModel, nameof(specificAreaListingViewModel));
@@ -31,6 +34,7 @@ public class MainViewModel : ViewModelBase
         ArgumentNullException.ThrowIfNull(aerialConstructionListingViewModel, nameof(aerialConstructionListingViewModel));
         ArgumentNullException.ThrowIfNull(stationaryCctvCamListingViewModel, nameof(stationaryCctvCamListingViewModel));
         ArgumentNullException.ThrowIfNull(barrierListingViewModel, nameof(barrierListingViewModel));
+        ArgumentNullException.ThrowIfNull(fenceListingViewModel, nameof(fenceListingViewModel));
 
         IntruderListingViewModel = intruderListingViewModel;
         SpecificAreaListingViewModel = specificAreaListingViewModel;
@@ -38,5 +42,6 @@ public class MainViewModel : ViewModelBase
         AerialConstructionListingViewModel = aerialConstructionListingViewModel;
         StationaryCctvCamListingViewModel = stationaryCctvCamListingViewModel;
         BarrierListingViewModel = barrierListingViewModel;
+        FenceListingViewModel = fenceListingViewModel;
     }
 }
