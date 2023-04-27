@@ -8,6 +8,7 @@ using AkimElemLib.Wpf.ViewModels.CctvCams;
 using AkimElemLib.Wpf.ViewModels.Intruders;
 using AkimElemLib.Wpf.ViewModels.ISOs.Barriers;
 using AkimElemLib.Wpf.ViewModels.ISOs.Fences;
+using AkimElemLib.Wpf.ViewModels.ISOs.Obstacles;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.Buildings;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.SpecificAreas;
@@ -16,6 +17,60 @@ namespace AkimElemLib.Wpf.Extensions;
 
 public static class ViewModelExtensions
 {
+    public static void ToObstacle(this EditObstacleViewModel source, Obstacle target)
+    {
+        target.Name = source.Name;
+        target.Length = source.Length;
+        target.Width = source.Width;
+        target.Height = source.Height;
+        target.HeightRelativeToGround = source.HeightRelativeToGround;
+        target.Transparency = source.Transparency;
+        target.VelocityMeasureUnit = source.VelocityMeasureUnit;
+        target.MaxVelocity = source.MaxVelocity;
+        target.HasBase = source.HasBase;
+        target.HasAluminiumBarbedTape = source.HasAluminiumBarbedTape;
+        target.VisorFenceParams = source.VisorFenceParams.ToObstacleVisorFenceParams();
+        target.AntiUndercarriageDeviceParams = source.AntiUndercarriageDeviceParams.ToObstacleAntiUndercarriageDeviceParams();
+        target.IsRamResistant = source.IsRamResistant;
+        target.MinOvercomeTime = source.MinOvercomeTime;
+        target.MaxOvercomeTime = source.MaxOvercomeTime;
+        target.MinEntranceDelay = source.MinEntranceDelay;
+        target.MaxEntranceDelay = source.MaxEntranceDelay;
+        target.MinExitDelay = source.MinExitDelay;
+        target.MaxExitDelay = source.MaxExitDelay;
+        target.IsSurmountableByResponseTeams = source.IsSurmountableByResponseTeams;
+    }
+
+    public static Obstacle ToObstacle(this EditObstacleViewModel vm) => new()
+    {
+        Name = vm.Name,
+        Length = vm.Length,
+        Width = vm.Width,
+        Height = vm.Height,
+        HeightRelativeToGround = vm.HeightRelativeToGround,
+        Transparency = vm.Transparency,
+        VelocityMeasureUnit = vm.VelocityMeasureUnit,
+        MaxVelocity = vm.MaxVelocity,
+        HasBase = vm.HasBase,
+        HasAluminiumBarbedTape = vm.HasAluminiumBarbedTape,
+        VisorFenceParams = vm.VisorFenceParams.ToObstacleVisorFenceParams(),
+        AntiUndercarriageDeviceParams = vm.AntiUndercarriageDeviceParams.ToObstacleAntiUndercarriageDeviceParams(),
+        IsRamResistant = vm.IsRamResistant,
+        MinOvercomeTime = vm.MinOvercomeTime,
+        MaxOvercomeTime = vm.MaxOvercomeTime,
+        MinEntranceDelay = vm.MinEntranceDelay,
+        MaxEntranceDelay = vm.MaxEntranceDelay,
+        MinExitDelay = vm.MinExitDelay,
+        MaxExitDelay = vm.MaxExitDelay,
+        IsSurmountableByResponseTeams = vm.IsSurmountableByResponseTeams,
+    };
+
+    public static ObstacleVisorFenceParams ToObstacleVisorFenceParams(this EditObstacleVisorFenceParamsViewModel vm) => 
+        new(vm.IsUsed, vm.Height);
+
+    public static ObstacleAntiUndercarriageDeviceParams ToObstacleAntiUndercarriageDeviceParams(this EditObstacleAntiUndercarriageDeviceParamsViewModel vm) => 
+        new(vm.IsUsed, vm.Depth);
+
     public static void ToFence(this EditFenceViewModel source, Fence target)
     {
         target.Name = source.Name;

@@ -7,6 +7,7 @@ using AkimElemLib.Wpf.ViewModels.CctvCams;
 using AkimElemLib.Wpf.ViewModels.Intruders;
 using AkimElemLib.Wpf.ViewModels.ISOs.Barriers;
 using AkimElemLib.Wpf.ViewModels.ISOs.Fences;
+using AkimElemLib.Wpf.ViewModels.ISOs.Obstacles;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.AerialConstructions;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.Buildings;
 using AkimElemLib.Wpf.ViewModels.SpecificObjects.SpecificAreas;
@@ -37,6 +38,8 @@ public partial class App : Application
                 services.AddSingleton<IEditAerialConstructionDialogWindowService, EditAerialConstructionDialogWindowService>();
                 services.AddSingleton<IEditBarrierDialogWindowService, EditBarrierDialogWindowService>();
                 services.AddSingleton<IEditFenceDialogWindowService, EditFenceDialogWindowService>();
+                services.AddSingleton<IEditObstacleDialogWindowService, EditObstacleDialogWindowService>();
+
                 services.AddSingleton<IExceptionHandler, MessageBoxExceptionHandler>();
 
                 services.AddSingleton<IntruderListingViewModel>();
@@ -46,7 +49,8 @@ public partial class App : Application
                 services.AddSingleton<StationaryCctvCamListingViewModel>();
                 services.AddSingleton<BarrierListingViewModel>();
                 services.AddSingleton<FenceListingViewModel>();
-                
+                services.AddSingleton<ObstacleListingViewModel>();
+
                 services.AddSingleton<MainViewModel>();
                 services.AddSingleton(services => new MainWindow()
                 {
@@ -64,6 +68,7 @@ public partial class App : Application
         var context = AppHost.Services.GetRequiredService<AkimElemLibContext>();
         context.Database.EnsureDeleted();
         context.Database.Migrate();
+
         var mainWindow = AppHost.Services.GetRequiredService<MainWindow>();
         mainWindow.Show();
     }

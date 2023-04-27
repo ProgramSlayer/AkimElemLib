@@ -1,0 +1,285 @@
+﻿<Window x:Class="AkimElemLib.Wpf.Views.EditObstacleDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:obstacles="clr-namespace:AkimElemLib.Wpf.ViewModels.ISOs.Obstacles"
+        d:DataContext="{d:DesignInstance Type=obstacles:EditObstacleViewModel}"
+        mc:Ignorable="d"
+        Title="Параметры препятствия" Height="800" Width="800"
+        d:DesignHeight="1900">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Margin="10"
+                      Grid.Row="1" Grid.Column="1">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Наименование"
+                                   Margin="10"
+                                   Grid.Row="0" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleName"
+                                 Text="{Binding Name}"
+                                 Margin="10"
+                                 Grid.Row="0" Grid.Column="1"/>
+
+                        <TextBlock Text="Длина, м"
+                                   Margin="10"
+                                   Grid.Row="1" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleLength"
+                                 Text="{Binding Length}"
+                                 Margin="10"
+                                 Grid.Row="1" Grid.Column="1"/>
+
+                        <TextBlock Text="Ширина, м"
+                                   Margin="10"
+                                   Grid.Row="2" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleWidth"
+                                 Text="{Binding Width}"
+                                 Margin="10"
+                                 Grid.Row="2" Grid.Column="1"/>
+
+                        <TextBlock Text="Высота, м"
+                                   Margin="10"
+                                   Grid.Row="3" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleHeight"
+                                 Text="{Binding Height}"
+                                 Margin="10"
+                                 Grid.Row="3" Grid.Column="1"/>
+
+                        <TextBlock Text="Высота расположения относительно земли, м"
+                                   Margin="10"
+                                   Grid.Row="4" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleHeightRelativeToGround"
+                                 Text="{Binding HeightRelativeToGround}"
+                                 Margin="10"
+                                 Grid.Row="4" Grid.Column="1"/>
+
+                        <TextBlock Text="Коэффициент прозрачности"
+                                   Margin="10"
+                                   Grid.Row="5" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleTransparency"
+                                 Text="{Binding Transparency}"
+                                 Margin="10"
+                                 Grid.Row="5" Grid.Column="1"/>
+
+                        <TextBlock Text="Единицы измерения скорости передвижения"
+                                   Margin="10"
+                                   Grid.Row="6" Grid.Column="0"/>
+                        <ComboBox Name="CmbBoxObstacleVelocityMeasureUnit"
+                                  ItemsSource="{Binding VelocityMeasureUnits}"
+                                  SelectedItem="{Binding VelocityMeasureUnit}"
+                                  Margin="10"
+                                  Grid.Row="6" Grid.Column="1"/>
+
+                        <TextBlock Text="Максимальная скорость передвижения"
+                                   Margin="10"
+                                   Grid.Row="7" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleMaxVelocity"
+                                 Text="{Binding MaxVelocity}"
+                                 Margin="10"
+                                 Grid.Row="7" Grid.Column="1"/>
+
+                        <TextBlock Text="Наличие цоколя"
+                                   Margin="10"
+                                   Grid.Row="8" Grid.Column="0"/>
+                        <CheckBox Name="ChkBoxObstacleHasBase"
+                                  IsChecked="{Binding HasBase}"
+                                  Margin="10"
+                                  Grid.Row="8" Grid.Column="1"/>
+
+                        <TextBlock Text="Наличие алюминиевой колючей ленты"
+                                   Margin="10"
+                                   Grid.Row="9" Grid.Column="0"/>
+                        <CheckBox Name="ChkBoxObstacleHasAluminiumBarbedTape"
+                                  IsChecked="{Binding HasAluminiumBarbedTape}"
+                                  Margin="10"
+                                  Grid.Row="9" Grid.Column="1"/>
+
+                        <TextBlock Text="Тараноустойчивость"
+                                   Margin="10"
+                                   Grid.Row="10" Grid.Column="0"/>
+                        <CheckBox Name="ChkBoxObstacleIsRamResistant"
+                                  IsChecked="{Binding IsRamResistant}"
+                                  Margin="10"
+                                  Grid.Row="10" Grid.Column="1"/>
+
+                        <TextBlock Text="Минимальное время преодоления, с"
+                                   Margin="10"
+                                   Grid.Row="11" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleMinOvercomeTime"
+                                 Text="{Binding MinOvercomeTime}"
+                                 Margin="10"
+                                 Grid.Row="11" Grid.Column="1"/>
+
+                        <TextBlock Text="Максимальное время преодоления, с"
+                                   Margin="10"
+                                   Grid.Row="12" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleMaxOvercomeTime"
+                                 Text="{Binding MaxOvercomeTime}"
+                                 Margin="10"
+                                 Grid.Row="12" Grid.Column="1"/>
+
+                        <TextBlock Text="Минимальная задержка на входе, с"
+                                   Margin="10"
+                                   Grid.Row="13" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleMinEntranceDelay"
+                                 Text="{Binding MinEntranceDelay}"
+                                 Margin="10"
+                                 Grid.Row="13" Grid.Column="1"/>
+
+                        <TextBlock Text="Максимальная задержка на входе, с"
+                                   Margin="10"
+                                   Grid.Row="14" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleMaxEntranceDelay"
+                                 Text="{Binding MaxEntranceDelay}"
+                                 Margin="10"
+                                 Grid.Row="14" Grid.Column="1"/>
+
+                        <TextBlock Text="Минимальная задержка на выходе, с"
+                                   Margin="10"
+                                   Grid.Row="15" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleMinExitDelay"
+                                 Text="{Binding MinExitDelay}"
+                                 Margin="10"
+                                 Grid.Row="15" Grid.Column="1"/>
+
+                        <TextBlock Text="Максимальная задержка на выходе, с"
+                                   Margin="10"
+                                   Grid.Row="16" Grid.Column="0"/>
+                        <TextBox Name="TxtBoxObstacleMaxExitDelay"
+                                 Text="{Binding MaxExitDelay}"
+                                 Margin="10"
+                                 Grid.Row="16" Grid.Column="1"/>
+
+                        <TextBlock Text="Преодолимость для групп реагирования"
+                                   Margin="10"
+                                   Grid.Row="17" Grid.Column="0"/>
+                        <CheckBox Name="ChkBoxObstacleIsSurmountableByResponseTeams"
+                                  IsChecked="{Binding IsSurmountableByResponseTeams}"
+                                  Margin="10"
+                                  Grid.Row="17" Grid.Column="1"/>
+                    </Grid>
+
+                    <GroupBox Name="GrpBoxObstacleVisorFence"
+                              DataContext="{Binding VisorFenceParams}"
+                              Header="Козырьковое ограждение"
+                              Margin="0 20 0 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Наличие"
+                                       Margin="10"
+                                       Grid.Row="0" Grid.Column="0"/>
+                            <CheckBox Name="ChkBoxObstacleVisorFenceIsUsed"
+                                      IsChecked="{Binding IsUsed}"
+                                      Margin="10"
+                                      Grid.Row="0" Grid.Column="1"/>
+
+                            <TextBlock Text="Высота, м"
+                                       Margin="10"
+                                       Grid.Row="1" Grid.Column="0"/>
+                            <TextBox Name="TxtBoxObstacleVisorFenceHeight"
+                                     Text="{Binding Height}"
+                                     IsEnabled="{Binding IsUsed, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="10"
+                                     Grid.Row="1" Grid.Column="1"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Name="GrpBoxObstacleAntiUndercarriageDevice"
+                              DataContext="{Binding AntiUndercarriageDeviceParams}"
+                              Header="Противоподкопное устройство"
+                              Margin="0 20 0 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Наличие"
+                                       Margin="10"
+                                       Grid.Row="0" Grid.Column="0"/>
+                            <CheckBox Name="ChkBoxObstacleAntiUndercarriageDeviceIsUsed"
+                                      IsChecked="{Binding IsUsed}"
+                                      Margin="10"
+                                      Grid.Row="0" Grid.Column="1"/>
+
+                            <TextBlock Text="Глубина, м"
+                                       Margin="10"
+                                       Grid.Row="1" Grid.Column="0"/>
+                            <TextBox Name="TxtBoxObstacleAntiUndercarriageDeviceDepth"
+                                     Text="{Binding Depth}"
+                                     IsEnabled="{Binding IsUsed, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="10"
+                                     Grid.Row="1" Grid.Column="1"/>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Orientation="Horizontal"
+                    Margin="10" HorizontalAlignment="Center" 
+                    Grid.Row="2" Grid.Column="1">
+                <Button Name="BtnSubmit"
+                    Content="OK"
+                    Click="BtnSubmit_Click"/>
+                <Button Name="BtnCancel"
+                    Margin="20 0 0 0"
+                    Content="Отмена"
+                    Click="BtnCancel_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

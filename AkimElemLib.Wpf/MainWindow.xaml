@@ -308,6 +308,47 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
+
+            <TabItem Header="Препятствия"
+                     DataContext="{Binding ObstacleListingViewModel}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10"
+                                Grid.Row="0"
+                                HorizontalAlignment="Center">
+                        <Button Name="BtnLoadObstacles"
+                                Command="{Binding LoadObstaclesCommand}"
+                                Content="Загрузить"/>
+                        <Button Name="BtnAddObstacle"
+                                Command="{Binding AddObstacleCommand}"
+                                Content="Добавить"
+                                Margin="20 0 0 0"/>
+                        <Button Name="BtnEditObstacle"
+                                Command="{Binding EditObstacleCommand}"
+                                Content="Изменить"
+                                Margin="20 0 0 0"/>
+                        <Button Name="BtnDeleteObstacle"
+                                Command="{Binding DeleteObstacleCommand}"
+                                Content="Удалить"
+                                Margin="20 0 0 0"/>
+                    </StackPanel>
+
+                    <DataGrid Margin="10"
+                              Grid.Row="1"
+                              AutoGenerateColumns="True"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              ItemsSource="{Binding Obstacles}"
+                              SelectedItem="{Binding SelectedObstacle}">
+
+                    </DataGrid>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
